@@ -38,7 +38,7 @@ resources: {}
 securityContext: {}
 service:
   port: 8078
-  type: ClusterIP
+  type: NodePort
 serviceAccount:
   annotations: {}
   automount: true
