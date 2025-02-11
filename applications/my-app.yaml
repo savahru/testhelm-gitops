@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argotestchart
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/savahru/testhelm-gitops.git'
+    targetRevision: HEAD
+    path: charts/testchart  # Path where Helm chart is stored
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
