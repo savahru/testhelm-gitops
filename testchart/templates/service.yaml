@@ -2,6 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "testchart.fullname" . }}
+  metadata:
+    annotations:
+      argocd.argoproj.io/sync-options: Prune=false
   labels:
     {{- include "testchart.labels" . | nindent 4 }}
 spec:
